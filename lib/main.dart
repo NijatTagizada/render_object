@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:render_object/components/my_center.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,26 +10,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const IndexPage(),
+      home: IndexPage(),
     );
   }
 }
 
 class IndexPage extends StatelessWidget {
-  const IndexPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Index Page'),
       ),
-      body: const Center(
-        child: Text('Lorem ipsum'),
+      body: MyCenter(
+        child: Text('d'),
       ),
     );
   }
