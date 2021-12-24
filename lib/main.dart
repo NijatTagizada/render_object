@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter/rendering.dart';
+import 'package:render_object/components/custom_slider.dart';
 import 'package:render_object/components/my_center.dart';
 
 void main() {
+  // debugRepaintRainbowEnabled = true;
   runApp(const MyApp());
 }
 
@@ -27,8 +30,25 @@ class IndexPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Index Page'),
       ),
-      body: MyCenter(
-        child: Text('d'),
+      body: Column(
+        children: [
+          Expanded(
+            child: MyCenter(
+              child: Text('d'),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              // color: Colors.cyan,
+              child: ProgressBar(
+                barColor: Colors.blue,
+                thumbColor: Colors.red,
+                thumbSize: 20.0,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
