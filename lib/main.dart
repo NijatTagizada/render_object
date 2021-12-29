@@ -50,7 +50,9 @@ class IndexPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: CircleProgress(),
+            child: CircleProgress(
+              progress: 70,
+            ),
           ),
         ],
       ),

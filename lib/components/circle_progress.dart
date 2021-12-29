@@ -3,13 +3,21 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 class CircleProgress extends LeafRenderObjectWidget {
+  final double progress;
+
+  const CircleProgress({required this.progress});
+
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return ProgressRenderObject();
+    return ProgressRenderObject(progress: progress);
   }
 }
 
 class ProgressRenderObject extends RenderBox {
+  final double progress;
+
+  ProgressRenderObject({required this.progress});
+
   @override
   void performLayout() {
     size = getDryLayout(constraints);
@@ -19,8 +27,8 @@ class ProgressRenderObject extends RenderBox {
   Size computeDryLayout(BoxConstraints constraints) {
     // These BoxContraints are passed in from the parent and tell you the max and min width and length that you’re allowed to be.
     print(constraints.toString());
-    final desiredWidth = constraints.maxWidth;
-    double desiredHeight = 10.0;
+    final desiredWidth = constraints.minWidth + 100;
+    double desiredHeight = constraints.minHeight + 100;
     final desiredSize = Size(desiredWidth, desiredHeight);
     return constraints.constrain(desiredSize);
   }
@@ -42,16 +50,20 @@ class ProgressRenderObject extends RenderBox {
       startAngle: 3 * math.pi / 2,
       endAngle: 7 * math.pi / 2,
       tileMode: TileMode.repeated,
-      colors: [Colors.blue, Colors.yellow],
+      colors: [
+        Colors.blue,
+        Colors.green,
+        Colors.amber,
+      ],
     );
 
     final paint = Paint()
       ..shader = gradient.createShader(rect)
-      ..strokeCap = StrokeCap.round // StrokeCap.round is not recommended.
+      ..strokeCap = StrokeCap.butt // StrokeCap.round is not recommended.
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5;
 
-    double arcAngle = 2 * math.pi * (40 / 100);
+    double arcAngle = 2 * math.pi * (progress / 100);
 
     // final circlePaint = Paint()
     //   ..shader = RadialGradient(
@@ -67,8 +79,9 @@ class ProgressRenderObject extends RenderBox {
     //   ..style = PaintingStyle.stroke
     //   ..strokeWidth = 5;
 
+    print(size);
     Offset center = Offset(size.width / 2, size.height / 2);
-    double radius = math.min(size.width / 2, size.height / 2) - 50;
+    double radius = math.min(size.width / 2, size.height / 2);
 
     canvas.drawCircle(center, radius, line);
 
