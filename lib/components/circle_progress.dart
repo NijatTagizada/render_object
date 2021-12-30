@@ -27,8 +27,6 @@ class CircleProgress extends LeafRenderObjectWidget {
 }
 
 class ProgressRenderObject extends RenderBox {
-  // final double progress;
-
   double get progress => _progress;
   double _progress;
   set progress(double value) {
