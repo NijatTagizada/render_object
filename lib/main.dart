@@ -5,7 +5,7 @@ import 'package:render_object/components/custom_slider.dart';
 import 'package:render_object/components/my_center.dart';
 
 void main() {
-  // debugRepaintRainbowEnabled = true;
+  //debugRepaintRainbowEnabled = true;
   runApp(const MyApp());
 }
 
@@ -24,7 +24,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class IndexPage extends StatelessWidget {
+class IndexPage extends StatefulWidget {
+  @override
+  State<IndexPage> createState() => _IndexPageState();
+}
+
+class _IndexPageState extends State<IndexPage> {
+  double progress = 10;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +56,40 @@ class IndexPage extends StatelessWidget {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    if (progress < 100) {
+                      progress += 10;
+                    }
+                  });
+                },
+                child: Text('Increase'),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    if (progress != 0) {
+                      progress -= 10;
+                    }
+                  });
+                },
+                child: Text('Decrease'),
+              ),
+            ],
+          ),
           Expanded(
             child: CircleProgress(
-              progress: 70,
+              progress: progress,
+              bgColor: Colors.grey.shade400,
+              progressColor: [
+                Colors.blue,
+                Colors.green,
+                Colors.amber,
+              ],
             ),
           ),
         ],

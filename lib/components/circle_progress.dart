@@ -4,19 +4,40 @@ import 'package:flutter/material.dart';
 
 class CircleProgress extends LeafRenderObjectWidget {
   final double progress;
-
-  const CircleProgress({required this.progress});
+  final List<Color> progressColor;
+  final Color bgColor;
+  const CircleProgress({
+    required this.progressColor,
+    required this.bgColor,
+    required this.progress,
+  });
 
   @override
   RenderObject createRenderObject(BuildContext context) {
     return ProgressRenderObject(progress: progress);
   }
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    ProgressRenderObject renderObject,
+  ) {
+    renderObject.progress = progress;
+  }
 }
 
 class ProgressRenderObject extends RenderBox {
-  final double progress;
+  // final double progress;
 
-  ProgressRenderObject({required this.progress});
+  double get progress => _progress;
+  double _progress;
+  set progress(double value) {
+    if (_progress == value) return;
+    _progress = value;
+    markNeedsPaint();
+  }
+
+  ProgressRenderObject({required double progress}) : _progress = progress;
 
   @override
   void performLayout() {
@@ -40,7 +61,7 @@ class ProgressRenderObject extends RenderBox {
     canvas.save();
 
     Paint line = Paint()
-      ..color = Colors.white
+      ..color = Colors.grey.shade400
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 5;
@@ -65,21 +86,6 @@ class ProgressRenderObject extends RenderBox {
 
     double arcAngle = 2 * math.pi * (progress / 100);
 
-    // final circlePaint = Paint()
-    //   ..shader = RadialGradient(
-    //     colors: [
-    //       Colors.blue.shade400,
-    //       Colors.yellow,
-    //     ],
-    //   ).createShader(Rect.fromCircle(
-    //     center: (Offset(size.width / 2, (size.height / 2) + 50)),
-    //     radius: arcAngle,
-    //   ))
-    //   ..strokeCap = StrokeCap.round
-    //   ..style = PaintingStyle.stroke
-    //   ..strokeWidth = 5;
-
-    print(size);
     Offset center = Offset(size.width / 2, size.height / 2);
     double radius = math.min(size.width / 2, size.height / 2);
 
