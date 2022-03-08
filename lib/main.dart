@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'widgets/circle_progress.dart';
-import 'widgets/custom_slider.dart';
-import 'widgets/my_center.dart';
-
+import 'page/bezier_page.dart';
+import 'page/index_page.dart';
 
 void main() {
   //debugRepaintRainbowEnabled = true;
@@ -16,84 +14,59 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Custom Widgets',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: IndexPage(),
+      home: HomePage(),
     );
   }
 }
 
-class IndexPage extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
-  State<IndexPage> createState() => _IndexPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _IndexPageState extends State<IndexPage> {
-  double progress = 10;
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Index Page'),
+        title: Text('Custom Widgets'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: MyCenter(
-              child: Text('d'),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              // color: Colors.cyan,
-              child: ProgressBar(
-                barColor: Colors.blue,
-                thumbColor: Colors.red,
-                thumbSize: 20.0,
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(10),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
             children: [
-              TextButton(
+              MaterialButton(
+                color: Colors.amber,
+                child: Text('Index Page'),
                 onPressed: () {
-                  setState(() {
-                    if (progress < 100) {
-                      progress += 10;
-                    }
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => IndexPage()),
+                  );
                 },
-                child: Text('Increase'),
               ),
-              TextButton(
+              SizedBox(height: 10),
+              MaterialButton(
+                color: Colors.amber,
+                child: Text('Bezier Page'),
                 onPressed: () {
-                  setState(() {
-                    if (progress != 0) {
-                      progress -= 10;
-                    }
-                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BezierPage()),
+                  );
                 },
-                child: Text('Decrease'),
               ),
             ],
           ),
-          Expanded(
-            child: CircleProgress(
-              progress: progress,
-              bgColor: Colors.grey.shade400,
-              progressColor: [
-                Colors.blue,
-                Colors.green,
-                Colors.amber,
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

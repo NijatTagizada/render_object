@@ -1,8 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class MyCenter extends SingleChildRenderObjectWidget {
-  const MyCenter({Key? key, required Widget child})
+class CenterWidget extends SingleChildRenderObjectWidget {
+  const CenterWidget({Key? key, required Widget child})
       : super(key: key, child: child);
 
   @override
