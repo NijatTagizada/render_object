@@ -98,30 +98,5 @@ class ProgressRenderObject extends RenderBox {
     );
 
     canvas.restore();
-
-    // final canvas = context.canvas;
-    // canvas.translate(offset.dx, offset.dy);
-    // canvas.save();
-
-    // final circlePaint = Paint()
-    //   ..shader = RadialGradient(
-    //     colors: [
-    //       Colors.blue.shade400,
-    //       Colors.orange.shade300,
-    //     ],
-    //   ).createShader(Rect.fromCircle(
-    //     center: (Offset(size.width / 2, (size.height / 2) + 50)),
-    //     radius: 100,
-    //   ))
-    //   ..style = PaintingStyle.stroke
-    //   ..strokeWidth = 5;
-
-    // final arcRect = Rect.fromCircle(
-    //   center: (Offset(size.width / 2, (size.height / 2) + 50)),
-    //   radius: 100,
-    // );
-
-    // canvas.drawArc(arcRect, 0.0, -3.14, false, circlePaint);
-    // canvas.restore();
   }
 }
