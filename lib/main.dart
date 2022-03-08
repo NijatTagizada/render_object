@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:render_object/components/circle_progress.dart';
-//import 'package:flutter/rendering.dart';
-import 'package:render_object/components/custom_slider.dart';
-import 'package:render_object/components/my_center.dart';
+
+import 'widgets/circle_progress.dart';
+import 'widgets/custom_slider.dart';
+import 'widgets/my_center.dart';
+
 
 void main() {
   //debugRepaintRainbowEnabled = true;
