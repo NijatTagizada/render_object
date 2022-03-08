@@ -29,6 +29,7 @@ class _BezierPageState extends State<BezierPage> {
                 color: Color.fromARGB(255, 138, 70, 70),
               ),
             ),
+            SizedBox(height: 10),
             CustomPaint(
               size: Size(140, 100),
               painter: CustomButtonPainter(),
