@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:render_object/widgets/custom_p.dart';
 
 import '../widgets/bezier_clipper.dart';
 
@@ -28,6 +29,22 @@ class _BezierPageState extends State<BezierPage> {
                 color: Color.fromARGB(255, 138, 70, 70),
               ),
             ),
+            CustomPaint(
+              size: Size(140, 100),
+              painter: CustomButtonPainter(),
+              child: SizedBox(
+                width: 140,
+                height: 80,
+                child: Center(
+                  child: Text(
+                    'Custom Button',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
